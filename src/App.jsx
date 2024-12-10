@@ -1,7 +1,16 @@
 import './App.css'
+import axios from 'axios'
 
 function App() {
 
+  const DatasApi = async () => {
+    try{
+      let response = await axios.get('https://catfact.ninja/fact')
+      console.log(response.data);
+    }catch(error){console.log(error)}
+  };
+
+  DatasApi()
 
   return (
     <>
