@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 const responsesDb = async () => {
     return await Db.query('SELECT *')
 };
-console.log(responsesDb); 
+console.log(responsesDb);
 
 app.get("/", Get);
 
