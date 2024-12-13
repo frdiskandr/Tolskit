@@ -1,11 +1,8 @@
 import express, { json } from "express";
 import { Get } from "./handler.js";
 import Db from './db/connection.js';
-import { Prisma, PrismaClient } from "@prisma/client";
-
 
 const app = express();
-const prisma = new PrismaClient()
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -13,7 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 const responsesDb = async () => {
     return await Db.query('SELECT *')
 };
-
 console.log(responsesDb); 
 
 app.get("/", Get);
