@@ -1,5 +1,33 @@
-.coba{
-  color: black;
-  position: absolute;
-  top: 50%;
+#root {
+  --main:rgb(26, 153, 153);
+  --title:#0760AB;
+}
+
+.title {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  background-color: var(--title);
+  border-end-start-radius: 130px;
+  border-bottom-right-radius: 130px;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (width < 650px) {
+  .navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+  }
+}
+
+main {
+  position: relative;
+  background-color: var(--main);
+  min-height: 100vh;
+  z-index: 0;
 }

@@ -3,10 +3,13 @@
   margin: 0;
 }
 
-body {
-  font-family: "Inter", sans-serif;
-  text-align: center;
-  padding: 0 20px;
-  background: var(--light-grey);
-  color: var(--white);
+@media (width < 650px) {
+  
+  body {
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    padding: 0;
+    background: var(--light-grey);
+    color: var(--white);
+  }
 }

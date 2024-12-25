@@ -1,11 +1,11 @@
 import "./style.css";
 
-function NavBar() {
+function Nav() {
   return (
     <>
       <nav className="nav">
         <input id="menu" type="checkbox" />
-        <label id="menu">Menu</label>
+        <label htmlFor="menu">Menu</label>
         <ul className="menu">
           <li>
             <a href="#0">
@@ -34,9 +34,9 @@ function NavBar() {
         </ul>
       </nav>
 
-      <p className="notification">Click on the Menu</p>
+      {/* <p className="notification">Click on the Menu</p> */}
     </>
   );
 }
 
-export default NavBar;
+export default Nav;

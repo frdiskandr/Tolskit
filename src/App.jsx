@@ -1,6 +1,6 @@
 import './App.css';
 import axios from 'axios';
-import NavBar from './components/navbar/navbar.jsx';
+import Nav from './components/navbar/navbar.jsx';
 
 function App() {
  
@@ -15,8 +15,12 @@ function App() {
 
   return (
     <>
-   <NavBar></NavBar>
-   <div className='coba'>hello world!</div>
+    <main>
+     <div className='title'><h3>Azure Tools</h3></div>
+    </main>
+    <div className="navbar">
+   <Nav/>
+    </div>
     </>
   )
 }
