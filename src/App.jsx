@@ -1,28 +1,23 @@
-import './App.css';
-import axios from 'axios';
-import Nav from './components/navbar/navbar.jsx';
+import "./App.css";
+import Nav from "./components/navbar/navbar.jsx";
+import {WordToPDF} from './tools/word to pdf/converter.jsx';
+import { Route, Routes } from "react-router-dom";
 
 function App() {
- 
-  const DatasApi = async () => {
-    try{
-      let response = await axios.get('https://catfact.ninja/fact')
-      console.log(response.data);
-    }catch(error){console.log(error)}
-  };
-
-  DatasApi()
 
   return (
     <>
-    <main>
-     <div className='title'><h3>Azure Tools</h3></div>
-    </main>
-    <div className="navbar">
-   <Nav/>
-    </div>
+      <div className="title">
+        <h3>Converter</h3>
+      </div>
+      <main>
+        <WordToPDF />
+      </main>
+      <div className="navbar">
+        <Nav />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

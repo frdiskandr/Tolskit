@@ -4,6 +4,10 @@ function Nav() {
   return (
     <>
       <nav className="nav">
+        <div className="sidemenu-left">
+         content
+        </div>
+        <div className="menu">
         <input id="menu" type="checkbox" />
         <label htmlFor="menu">Menu</label>
         <ul className="menu">
@@ -32,6 +36,8 @@ function Nav() {
             </a>
           </li>
         </ul>
+        </div>
+        <div className="sidemenu-right">icon</div>
       </nav>
 
       {/* <p className="notification">Click on the Menu</p> */}
