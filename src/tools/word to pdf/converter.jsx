@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Nav from '/src/components/navbar/navbar.jsx';
+import download from "downloadjs";
+import Nav from "/src/components/navbar/navbar.jsx";
 import "./style.css";
 
 function WordToPDF() {
-  const [ files, setFiles ] = useState([]);
+  const [files, setFiles] = useState([]);
   const [base63Str, setBase64Str] = useState(null);
   const [responseApi, setResponseApi] = useState(null);
 
-  useEffect(()=> {
+  useEffect(() => {
     console.log("file =", files);
-  },[files]);
+  }, [files]);
 
   const preventDefault = (e) => {
     e.preventDefault();
@@ -25,13 +26,17 @@ function WordToPDF() {
 
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
-    if(selectedFiles.length > 0) {
+    if (selectedFiles.length > 0) {
       const file = selectedFiles[0];
-      if (file.type !== 'application/msword' && file.type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+      if (
+        file.type !== "application/msword" &&
+        file.type !==
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      ) {
         alert("Invalid file type. Please select a .doc or .docx file.");
         return;
       }
-      if(file.size > 1024 * 1024 * 10) {
+      if (file.size > 1024 * 1024 * 10) {
         alert("File size is too large. Please select a file less than 10MB.");
         return;
       }
@@ -39,57 +44,72 @@ function WordToPDF() {
 
       const reader = new FileReader();
       reader.onload = (e) => {
-          const result = e.target.result;
-          const base64String = result.split(',')[1];
-          setBase64Str(base64String);
+        const result = e.target.result;
+        const base64String = result.split(",")[1];
+        setBase64Str(base64String);
       };
 
       reader.readAsDataURL(selectedFiles[0]);
     }
+
   };
 
-  // Api call 
-   async function handleConvert(){
-      const apiToken = 'secret_ly9ehTQfZfOrNuEd';
-      const url = 'https://v2.convertapi.com/convert/doc/to/pdf';
+  // Api call
+  async function handleConvert() {
+    const apiToken = "secret_ly9ehTQfZfOrNuEd";
+    const url = "https://v2.convertapi.com/convert/doc/to/pdf";
 
-      axios.post(url, {
-        Parameters: [
-          {
-            Name: 'File',
-            FileValue: {
-              Name: files[0].name,
-              Data: base63Str
-            }
+    axios
+      .post(
+        url,
+        {
+          Parameters: [
+            {
+              Name: "File",
+              FileValue: {
+                Name: files[0].name,
+                Data: base63Str,
+              },
+            },
+            {
+              Name: "StoreFile",
+              Value: true,
+            },
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+            "Content-Type": "application/json",
           },
-          {
-            Name: 'StoreFile',
-            Value: true
-          }
-        ]
-      },{
-        headers: {
-          'Authorization': `Bearer ${apiToken}`,
-          "Content-Type": "application/json"
         }
-      })
+      )
       .then((res) => {
         setResponseApi(res.data);
         console.log(res);
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.error(err);
         throw err;
-      })
-    };
+      });
+  }
 
-    const handleDownload = () => {
-      if(responseApi) {
-        console.log(responseApi.Files[0].Url);
-        const link = responseApi.Files[0].Url;
-      //  window.open(link, '_blank', 'noopener,noreferrer');
-      }
+  const handleDownload = () => {
+    if (responseApi) {
+      console.log(responseApi.Files[0].Url);
+      const fileUrl = responseApi.Files[0].Url;
+
+      fetch(fileUrl)
+        .then((response) => response.blob())
+        .then((blob) => {
+          const fileName = responseApi.Files[0].Name;
+          download(blob, fileName, "application/pdf");
+        }).catch((error) => {
+          console.error(error);
+        })
     }
-    
+  };
+
   return (
     <>
       <div
@@ -110,20 +130,33 @@ function WordToPDF() {
               onChange={handleFileChange}
               style={{ display: "none" }}
             />
-            {/* <ul>{renderFileList()}</ul> */}
             <label htmlFor="file" id="button">
               {" "}
               Select File
             </label>
-            {
-              responseApi? (
-                <input type="button" value="Downloads"className="button" onClick={handleDownload}/>
-              ) : (<input type="button" value="Convert" onClick={handleConvert} className="button" />)
-            }
+            {files.length > 0 &&  (responseApi ? (
+              <input 
+                type="button"
+                value="Download"
+                className="button"
+                onClick={handleDownload}
+              />
+            ) : (
+              <input
+                type="button"
+                value="Convert"
+                className="button"
+                onClick={handleConvert}
+              />
+            ))}
             {/* <input type="button" value="Convert" onClick={handleConvert} className="button" /> */}
           </form>
         </div>
-        <ul id="file-list">{files.map((file, index) => <li key={index}>{file.name}</li>) }</ul>
+        <ul id="file-list">
+          {files.map((file, index) => (
+            <li key={index}>{file.name}</li>
+          ))}
+        </ul>
       </div>
       <div className="navbar">
         <Nav />

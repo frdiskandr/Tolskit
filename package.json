@@ -13,6 +13,7 @@
     "axios": "^1.7.9",
     "convertapi": "^1.15.0",
     "dotenv": "^16.4.7",
+    "downloadjs": "^1.4.7",
     "https": "^1.0.0",
     "https-browserify": "^1.0.0",
     "prop-types": "^15.8.1",

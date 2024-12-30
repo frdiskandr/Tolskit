@@ -30,7 +30,7 @@
   cursor: pointer;
   text-decoration: none;
   position: absolute;
-  bottom:15px;
+  bottom:20em;
   border-radius: 30px;
   right: 50%;
   z-index: 1;
@@ -53,11 +53,15 @@
 }
 
 #file-list {
+  position:relative;
+  bottom: -100px;
   list-style: none;
-  padding: 0;
-  margin-top: 20px;
+  padding: 10px;
   text-align: left;
   padding: 1em;
+  height: 190px;
+  overflow: auto;
+
 }
 
 #file-list li {

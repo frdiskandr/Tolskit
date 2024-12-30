@@ -12,8 +12,7 @@ function App() {
 
   return (
     <>
-     {isMobile ? <MobileView /> : <DesktopView />} 
-     <iframe src="http://localhost:3000" sandbox="allow-scripts allow-same-origin allow-downloads"></iframe>
+     {isMobile ? <MobileView /> : <DesktopView />}
     </>
   );
 }

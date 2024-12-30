@@ -2,6 +2,12 @@ import "./style.css";
 
 function Nav() {
 
+  const handleClick = () => {
+    const background = document.querySelector('.background');
+    background.classList.toggle('blur');
+    background.style.display = 'block';
+  } 
+
   return (
     <>
       <nav className="nav">
@@ -10,11 +16,11 @@ function Nav() {
         <div className="menu">
 
 
-        {/* <input id="menu" type="checkbox" onClick={handleClick} defaultChecked={false}/>
-        <label htmlFor="menu">{isLoading ? "Loading" : value}</label> */}
+        <input id="menu" type="checkbox" defaultChecked={false} onClick={handleClick}/>
+        <label htmlFor="menu">Menu</label>
 
-         
-        {/* <ul className="menu">
+         <div className="background" style={{display: 'none'}}></div>
+        <ul className="menu">
           <li>
             <a href="#0">
               <span>About</span>
@@ -39,7 +45,7 @@ function Nav() {
               <i className="fas fa-envelope-open-text" aria-hidden="true"></i>
             </a>
           </li>
-        </ul> */}
+        </ul>
         </div>
         <div className="sidemenu-right"></div>
       </nav>

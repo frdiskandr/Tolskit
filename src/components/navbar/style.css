@@ -121,7 +121,7 @@ position: relative;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s;
-  color: var(--black);
+  color: var(--white);
   font-weight: bold;
 }
 
@@ -163,7 +163,7 @@ position: relative;
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: right;
-  z-index: 2;
+  z-index: 1;
   left: 15%;
   top: 20px;
   width: 4em;
@@ -175,19 +175,31 @@ position: relative;
   background-image: url('/src/assets/images/iconpdf.png');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 2;
+  z-index: 0;
   right: 15%;
   top: 20px;
   width: 4em;
   height: 2.5em;
 }
 
-
-
-
-
-
-
+.background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: filter 0.3s ease-in-out;
+  -webkit-transition: filter 0.3s ease-in-out;
+  -moz-transition: filter 0.3s ease-in-out;
+  -ms-transition: filter 0.3s ease-in-out;
+  -o-transition: filter 0.3s ease-in-out;
+}
+.background.blur {
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+}
 
 
 
