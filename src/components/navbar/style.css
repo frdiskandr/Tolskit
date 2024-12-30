@@ -20,6 +20,9 @@ a {
   text-decoration: none;
 }
 
+.menu {
+  height:4em;
+}
 
 .notification {
   position: absolute;
@@ -50,7 +53,7 @@ a {
 }
 
 .nav [type="checkbox"] + label {
-  position: relative;
+position: relative;
   width: 75px;
   height: 75px;
   display: flex;
@@ -123,7 +126,7 @@ a {
 }
 
 .nav input:checked + label {
-  background: var(--black);
+  background: var(--violet);
   transform: translateY(calc(-50% + 4px));
 }
 
@@ -156,7 +159,10 @@ a {
 
 .sidemenu-left {
   position: absolute;
-  background-color: #0760AB;
+  background-image: url('/src/assets/images/iconword.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: right;
   z-index: 2;
   left: 15%;
   top: 20px;
@@ -166,7 +172,9 @@ a {
 
 .sidemenu-right {
   position: absolute;
-  background-color: #0760AB;
+  background-image: url('/src/assets/images/iconpdf.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   z-index: 2;
   right: 15%;
   top: 20px;

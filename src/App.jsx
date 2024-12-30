@@ -1,21 +1,19 @@
-import "./App.css";
-import Nav from "./components/navbar/navbar.jsx";
-import {WordToPDF} from './tools/word to pdf/converter.jsx';
-import { Route, Routes } from "react-router-dom";
+import DesktopView from "./view/destop.jsx";
+import MobileView from "./view/mobile.jsx";
+import { useState } from "react";
 
 function App() {
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 650);
+
+  window.addEventListener("resize", () => {
+    setIsMobile(window.innerWidth < 650);
+  });
+
   return (
     <>
-      <div className="title">
-        <h3>Converter</h3>
-      </div>
-      <main>
-        <WordToPDF />
-      </main>
-      <div className="navbar">
-        <Nav />
-      </div>
+     {isMobile ? <MobileView /> : <DesktopView />} 
+     <iframe src="http://localhost:3000" sandbox="allow-scripts allow-same-origin allow-downloads"></iframe>
     </>
   );
 }

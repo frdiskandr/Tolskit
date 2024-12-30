@@ -1,16 +1,20 @@
 import "./style.css";
 
 function Nav() {
+
   return (
     <>
       <nav className="nav">
         <div className="sidemenu-left">
-         content
         </div>
         <div className="menu">
-        <input id="menu" type="checkbox" />
-        <label htmlFor="menu">Menu</label>
-        <ul className="menu">
+
+
+        {/* <input id="menu" type="checkbox" onClick={handleClick} defaultChecked={false}/>
+        <label htmlFor="menu">{isLoading ? "Loading" : value}</label> */}
+
+         
+        {/* <ul className="menu">
           <li>
             <a href="#0">
               <span>About</span>
@@ -35,9 +39,9 @@ function Nav() {
               <i className="fas fa-envelope-open-text" aria-hidden="true"></i>
             </a>
           </li>
-        </ul>
+        </ul> */}
         </div>
-        <div className="sidemenu-right">icon</div>
+        <div className="sidemenu-right"></div>
       </nav>
 
       {/* <p className="notification">Click on the Menu</p> */}
