@@ -8,6 +8,8 @@ function WordToPDF() {
   const [files, setFiles] = useState([]);
   const [base63Str, setBase64Str] = useState(null);
   const [responseApi, setResponseApi] = useState(null);
+  const [reverse, setReverse] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     console.log("file =", files);
@@ -28,14 +30,6 @@ function WordToPDF() {
     const selectedFiles = Array.from(e.target.files);
     if (selectedFiles.length > 0) {
       const file = selectedFiles[0];
-      if (
-        file.type !== "application/msword" &&
-        file.type !==
-          "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-      ) {
-        alert("Invalid file type. Please select a .doc or .docx file.");
-        return;
-      }
       if (file.size > 1024 * 1024 * 10) {
         alert("File size is too large. Please select a file less than 10MB.");
         return;
@@ -51,14 +45,15 @@ function WordToPDF() {
 
       reader.readAsDataURL(selectedFiles[0]);
     }
-
   };
 
   // Api call
   async function handleConvert() {
     const apiToken = "secret_ly9ehTQfZfOrNuEd";
-    const url = "https://v2.convertapi.com/convert/doc/to/pdf";
-
+    const url = reverse
+      ? "https://v2.convertapi.com/convert/pdf/to/docx"
+      : "https://v2.convertapi.com/convert/doc/to/pdf";
+    setIsLoading(true);
     axios
       .post(
         url,
@@ -104,9 +99,24 @@ function WordToPDF() {
         .then((blob) => {
           const fileName = responseApi.Files[0].Name;
           download(blob, fileName, "application/pdf");
-        }).catch((error) => {
-          console.error(error);
         })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  const handleReverse = () => {
+    setReverse(!reverse);
+    console.log("reverse", reverse);
+  };
+
+  const loader = () => {
+    if (isLoading === true) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+      return <div className="loader"></div>;
     }
   };
 
@@ -118,15 +128,16 @@ function WordToPDF() {
         onDragOver={preventDefault}
         onDrop={handleDrop}
       >
-        <h1>word to pdf</h1>
+        <h1>{reverse ? "Pdf to Word" : "Word to Pdf"}</h1>
         <div id="drop-area">
+          {loader()}
           <form action="POST">
-            <label htmlFor="file">Word File</label>
+            <label htmlFor="file">{reverse ? "Pdf" : "Word"}</label>
             <input
               type="file"
               name="file"
               id="file"
-              accept=".doc,.docx"
+              accept={reverse ? ".pdf" : ".doc,.docx"}
               onChange={handleFileChange}
               style={{ display: "none" }}
             />
@@ -134,23 +145,27 @@ function WordToPDF() {
               {" "}
               Select File
             </label>
-            {files.length > 0 &&  (responseApi ? (
-              <input 
-                type="button"
-                value="Download"
-                className="button"
-                onClick={handleDownload}
-              />
-            ) : (
-              <input
-                type="button"
-                value="Convert"
-                className="button"
-                onClick={handleConvert}
-              />
-            ))}
+            {files.length > 0 &&
+              (responseApi ? (
+                <input
+                  type="button"
+                  value="Download"
+                  className="button"
+                  onClick={handleDownload}
+                />
+              ) : (
+                <input
+                  type="button"
+                  value="Convert"
+                  className="button"
+                  onClick={handleConvert}
+                />
+              ))}
             {/* <input type="button" value="Convert" onClick={handleConvert} className="button" /> */}
           </form>
+          <button id="Reverse" onClick={handleReverse}>
+            ~<p>Reverse</p>
+          </button>
         </div>
         <ul id="file-list">
           {files.map((file, index) => (
