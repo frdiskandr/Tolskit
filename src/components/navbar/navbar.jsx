@@ -23,8 +23,8 @@ function Nav() {
           <div className="background" style={{ display: "none" }}></div>
           <ul className="menu">
             <li>
-              <a href="#0">
-                <span>About</span>
+              <a href="/yt/to/mp3">
+                <span>Yt to Mp3</span>
                 <i className="fas fa-address-card" aria-hidden="true"></i>
               </a>
             </li>

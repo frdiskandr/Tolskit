@@ -180,4 +180,4 @@ function WordToPDF() {
   );
 }
 
-export { WordToPDF };
+export default WordToPDF ;
