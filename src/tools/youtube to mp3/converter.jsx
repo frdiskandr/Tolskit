@@ -1,13 +1,13 @@
 import "./style.css";
+import Nav from '/src/components/navbar/navbar.jsx';
+
 function YtToMp3() {
   return (
     <>
-      <iframe
-        id="widgetApi"
-        src="https://convert2mp3s.com/api/widget?url=https://youtu.be/uKD2-reORss?si=IrQv3_WP-eQIppoD"
-        width="300px"
-        height="100%"
-      ></iframe>
+     <h1>dalam tahap development</h1>
+     <div className="navbar">
+      <Nav/>
+     </div>
     </>
   );
 }

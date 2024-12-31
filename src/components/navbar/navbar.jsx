@@ -29,20 +29,20 @@ function Nav() {
               </a>
             </li>
             <li>
-              <a href="#0">
+              <a href="/">
                 <span>Projects</span>
                 <i className="fas fa-tasks" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a href="#0">
+              <a href="/">
                 <span>Clients</span>
                 <i className="fas fa-users" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a href="#0">
-                <span>Contact</span>
+              <a href="/">
+                <span>Word to Pdf</span>
                 <i className="fas fa-envelope-open-text" aria-hidden="true"></i>
               </a>
             </li>

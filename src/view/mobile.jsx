@@ -18,6 +18,7 @@ function MobileView() {
             <Routes>
               <Route path="/yt/to/mp3" element={<YtToMp3/>} />
               <Route path="/" element={<WordToPDF />} />
+              {/* 404 not found*/}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
